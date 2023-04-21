@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock Anthony Akor </title>
+</head>
+<body onload="startTime()" >
+
+
+       <h2> Digital Color</h2>
+       <div class="container-clock">
+           <!-- DateTime -->
+            <div class="datetime">
+                <div class="time">
+                   <span id="hours">00</span>:
+                   <span id="minutes">00</span>:
+                   <span id="seconds">00</span>
+                   <span id="period">AM</span>
+
+
+                </div>
+            </div>
+
+            <!-- Date Info -->
+         
+            <div class="date">
+                <span id="day">week</span>
+                <span id="month">month</span>
+                <span id="daynum">day</span>
+                <span id="year">year</span>
+
+
+            </div>
+     </div>
+
+
+<!-- Javascript HERE  -->
+<script>
+      function updateTime(){
+           var time = new Date();
+           var day=time.getDay(),
+               mo=time.getMonth(),
+               yr=time.getFullYear(),
+               daynum=time.getDate(),
+               hr=time.getHours(),
+               min=time.getMinutes(),
+               sec=time.getSeconds(),S
+               period="AM";
+
+               
+            // if else statement to determine Am or PM
+
+            if (hr>12){
+                period="PM";
+            } else {
+
+                period="AM";
+            }
+            // do a test using console.log()
+            console.log(day);
+            console.log(mo);
+            console.log(yr);
+
+            // convert to two digital numbers
+
+            Number.prototype.pad=function (digits){
+
+               for (var n=this.toString(); n.length <digits; n=0+n);
+               return n;
+
+
+            }
+           
+            // convert values to months, week
+
+            var months =["Januar", "February", "March", "April", "May", "June", "Jun", "July", "August", "September", "October", "November", "December"]
+            var week =["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+            var ids = ["hours", "minutes", "seconds", "period", "day", "month", "daynum", "year" ]
+            var values=[ hr.pad(2), min.pad(2), sec.pad(2), period, week[day], months[mo], daynum.pad(2), yr ]
+
+            // using Loop to add values to ids
+            for (var i=0; i<ids.length; i++)
+            document.getElementById(ids[i]).firstChild.nodeValue=values[i];
+    
+
+            
+        }
+
+
+        function startTime(){
+            updateTime();
+            window.setInterval("updateTime()", 1);
+                
+        }
+
+
+
+
+    </script>
+
+
+
+
+    </body>
+    </html>
